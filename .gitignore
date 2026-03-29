@@ -1,0 +1,9 @@
+node_modules/
+.npm/
+.DS_Store
+
+# Capacitor generated folders (Commit them based on preference, but usually we commit the platforms folder if we don't have a complex build step. Since this is a simple static site, we can commit them so the user just opens them in Android Studio. So I will NOT ignore ios/ android/)
+
+# Build outputs
+dist/
+build/
