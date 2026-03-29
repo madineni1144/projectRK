@@ -16,14 +16,21 @@ if (hamburger && navLinks) {
   });
 }
 
-// Navbar scroll effect
+// Navbar scroll effect (Optimized)
+let isScrolling = false;
 window.addEventListener('scroll', () => {
-  if (window.scrollY > 100) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  if (!isScrolling) {
+    window.requestAnimationFrame(() => {
+      if (window.scrollY > 100) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+      isScrolling = false;
+    });
+    isScrolling = true;
   }
-});
+}, { passive: true });
 
 // Form validation and submission
 if (subscribeForm) {
@@ -137,7 +144,8 @@ document.querySelectorAll('.product-card, .step-card, .testimonial-card, .benefi
 const style = document.createElement('style');
 style.textContent = `
   .animate-in {
-    animation: fadeInUp 0.6s ease-out forwards;
+    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    will-change: transform, opacity;
   }
 
   @keyframes fadeInUp {
